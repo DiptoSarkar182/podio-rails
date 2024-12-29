@@ -47,3 +47,6 @@ group :development, :test do
 end
 
 
+gem 'podio', git: 'https://github.com/DiptoSarkar182/podio-rb-fork'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'faraday'
