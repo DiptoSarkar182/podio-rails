@@ -6,11 +6,17 @@ class PodioService
   def authenticate
     unless Podio.client
       puts "Reinitializing Podio client..."
-      Podio.setup(api_key: ENV["PODIO_API_KEY"], api_secret: ENV["PODIO_API_SECRET"])
+      Podio.setup(
+        api_key: Rails.application.credentials.podio[:api_key],
+        api_secret: Rails.application.credentials.podio[:api_secret]
+      )
     end
 
     puts "Authenticating Podio client..."
-    Podio.client.authenticate_with_credentials(ENV['PODIO_USERNAME'], ENV['PODIO_PASSWORD'])
+    Podio.client.authenticate_with_credentials(
+      Rails.application.credentials.podio[:username],
+      Rails.application.credentials.podio[:password]
+    )
     puts "Authentication successful"
   end
 
