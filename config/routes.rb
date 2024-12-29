@@ -7,5 +7,14 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get "podio", to: "podio#index"
+
+
+  resources :podio, only: [] do
+    collection do
+      get :list_organizations
+      get :app_items
+      get :item_details
+      get :app_definition
+    end
+  end
 end
